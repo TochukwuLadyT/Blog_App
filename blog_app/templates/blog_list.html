@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog App</title>
+</head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'stylesheet.css' %}">
+<body>
+
+<div class="container">
+        <h3 align="center">Posts</h3>
+        <table id="post" border="1">
+            <thead>
+                 <th>No</th>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Published Date</th>
+                <th>Author</th>
+                <th colspan="2" id="mid">Action</th>
+            </thead>
+            {% for post in post %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{post.id}}</td>
+                <td>{{post.title}}</td>
+                <td>{{post.content}}</td>
+                <td>{{post.published_date}}</td>
+                <td>{{post.author}}</td>
+                <td>
+                    <a href="update_blog/{{post.id}}"><button id="up">update</button></a>
+                </td>
+
+                <td>
+                     <a href="delete_post/{{post.id}}"><button id="del">delete</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br><br>
+            <a href="{% url 'add_post' %}"><button id="new3">Add Student</button></a>
+    </div>
+
+</body>
+</html>
